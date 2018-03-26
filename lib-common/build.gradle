@@ -1,0 +1,50 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.6.RELEASE'
+    }
+    repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public"}
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'lib-common'
+    version = '1.0-SNAPSHOT'
+}
+
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public"}
+    jcenter()
+}
+
+dependencies {
+
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-data-redis")
+
+    compile("com.fasterxml.jackson.module:jackson-module-parameter-names")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+
+    compile('com.github.stuxuhai:jpinyin:+')
+    compile group: 'com.google.guava', name: 'guava', version: '18.0'
+
+
+    compile("net.logstash.logback:logstash-logback-encoder:+")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}

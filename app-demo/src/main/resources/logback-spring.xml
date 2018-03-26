@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+
+	<!--<appender name="logstashTest" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+		<destination>192.168.10.2:5000</destination>
+
+		<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+			<providers>
+				<mdc/>
+				<context/>
+				<version/>
+				<logLevel/>
+				<loggerName/>
+				<pattern>
+					<pattern>{ "appName": "invest" }</pattern>
+				</pattern>
+				<threadName/>
+				<message/>
+				<logstashMarkers/>
+				<arguments/>
+				<stackTrace/>
+			</providers>
+		</encoder>
+	</appender>
+
+	<appender name="logstashProd" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+		<destination>192.168.10.2:5000</destination>
+
+		<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+			<providers>
+				<mdc/>
+				<context/>
+				<version/>
+				<logLevel/>
+				<loggerName/>
+				<pattern>
+					<pattern>{ "appName": "invest" }</pattern>
+				</pattern>
+				<threadName/>
+				<message/>
+				<logstashMarkers/>
+				<arguments/>
+				<stackTrace/>
+			</providers>
+		</encoder>
+	</appender>-->
+
+	<springProfile name="dev">
+		<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" />
+		<logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG" />
+		<root level="info">
+			<appender-ref ref="CONSOLE"/>
+		</root>
+	</springProfile>
+
+	<!--<springProfile name="test">
+		<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" />
+		<logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG" />
+			<appender-ref ref="logstashTest" />
+		</logger>
+		<logger name="com.jia.common.web.PerformanceInterceptor" level="INFO" additivity="false">
+			<appender-ref ref="logstashTest" />
+		</logger>
+		<root level="info">
+			<appender-ref ref="CONSOLE"/>
+			<appender-ref ref="logstashTest"/>
+		</root>
+	</springProfile>
+
+	<springProfile name="pre,prod">
+		<logger name="com.jia.common.metric.MetricAndHealthExporterService" level="INFO" additivity="false">
+			<appender-ref ref="logstashProd" />
+		</logger>
+		<logger name="com.jia.common.web.PerformanceInterceptor" level="INFO" additivity="false">
+			<appender-ref ref="logstashProd" />
+		</logger>
+		<root level="info">
+			<appender-ref ref="CONSOLE"/>
+			<appender-ref ref="logstashProd"/>
+		</root>
+	</springProfile>-->
+</configuration>

@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://mysql.kube.cunpiao.com:3306/jia?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: jia
+    password: Jia2018#
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      maximum-pool-size: 1
+
+  jpa:
+    show-sql: true
+
+  thymeleaf:
+    cache: false
+
+logging:
+  level:
+    jia: DEBUG
+    ROOT: INFO
+
+userInfo:
+  userName: Devid
+  userAge: 18
+  mobile: 15899773751

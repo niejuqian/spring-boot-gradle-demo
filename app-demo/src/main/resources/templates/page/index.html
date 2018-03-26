@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>spring boot gradle demo</title>
+</head>
+<body>
+    <p>
+        欢迎来到Spring boot的世界
+    </p>
+    <p th:text="'姓名：' + ${userName}">1</p>
+    <p th:text="'年龄：' + ${userAge}">3</p>
+    <p th:text="'手机：' + ${mobile}">4</p>
+</body>
+</html>

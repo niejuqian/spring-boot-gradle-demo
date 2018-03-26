@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: dev
+
+
+module:
+  code: demo
+  prefix: app
+  domain:
+    static: http://ds.cunpiao.com
+    main: http://localhost
+    cookie: localhost
+  uri:
+    login: login
+    forbidden: /forbidden
+    notFound: /404
+    forceExit: /forceExit
+  page:
+    notFound: core/notFound
+    error: core/error
+  ajax:
+    notFound: core/notFoundAjax
+    error: core/errorAjax
