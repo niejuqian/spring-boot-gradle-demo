@@ -1,7 +1,7 @@
 #!/bin/bash
 
-appdemo="app-invest"
-appversion="1.0.0"
+appdemo="app-admin"
+appversion="1.0-SNAPSHOT"
 appname="spring-boot-gradle-demo"
 shpath="/home/demo/services"
 gitpath="/home/demo/git"
@@ -13,32 +13,32 @@ appgit=$(git clone https://github.com/niejuqian/spring-boot-gradle-demo.git)
 
 echo "package file......"
 # build file
-cd $gitpath/$appname/$appinvest
-echo "current path is $gitpath/$appname/$appinvest"
+cd $gitpath/$appname/$appdemo
+echo "current path is $gitpath/$appname/$appdemo"
 var=$(gradle clean bootRepackage )
 res=$(echo ${var} | grep  "BUILD SUCCESSFUL" )
 if [ ${#res} -gt 0 ]
 then
 	cd $shpath
 	echo "cd $shpath"
-	PID=$(ps -ef | grep $appinvest-$appversion.jar | grep -v grep | awk '{ print $2 }')
+	PID=$(ps -ef | grep $appdemo-$appversion.jar | grep -v grep | awk '{ print $2 }')
 	if [ -z "$PID" ]
 	then
-		echo "The $appinvest server is already stopped"
+		echo "The $appdemo server is already stopped"
 	else
-		echo "The $appinvest stopping......"
+		echo "The $appdemo stopping......"
 		kill -9 $PID
 	fi
 	
-	echo "moving $appinvest application......"
-	rm -rf $appinvest*
-	cp -r -f $gitpath/$appname/$appinvest/build/libs/$appinvest-$appversion.jar $shpath
+	echo "moving $appdemo application......"
+	rm -rf $appdemo*
+	cp -r -f $gitpath/$appname/$appdemo/build/libs/$appdemo-$appversion.jar $shpath
 
-	echo "$appinvest server starting......"
-	nohup java -jar $appinvest-$appversion.jar --spring.profiles.active=dev > $appinvest.log &
-	echo "$appinvest server started"
+	echo "$appdemo server starting......"
+	nohup java -jar $appdemo-$appversion.jar --spring.profiles.active=dev > $appdemo.log &
+	echo "$appdemo server started"
 else
-	echo "$appinvest  build is NOT SUCCESS ,exit"
+	echo "$appdemo  build is NOT SUCCESS ,exit"
 	exit;
 fi
 
