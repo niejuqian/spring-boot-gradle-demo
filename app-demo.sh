@@ -1,6 +1,6 @@
 #!/bin/bash
 
-appdemo="app-admin"
+appdemo="app-demo"
 appversion="1.0-SNAPSHOT"
 appname="spring-boot-gradle-demo"
 shpath="/home/demo/services"
@@ -13,8 +13,13 @@ appgit=$(git clone https://github.com/niejuqian/spring-boot-gradle-demo.git)
 
 echo "package file......"
 # build file
+sourceDir=$(pwd)
+echo "current path is $sourceDir"
+echo "target path is $gitpath/$appname/$appdemo"
 cd $gitpath/$appname/$appdemo
+currentDir=$(pwd)
 echo "current path is $gitpath/$appname/$appdemo"
+echo "current path is $currentDir"
 var=$(gradle clean bootRepackage )
 res=$(echo ${var} | grep  "BUILD SUCCESSFUL" )
 if [ ${#res} -gt 0 ]
