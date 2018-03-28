@@ -38,4 +38,13 @@ public class UserInfo {
         this.mobile = mobile;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "userName='" + userName + '\'' +
+                ", userAge='" + userAge + '\'' +
+                ", mobile='" + mobile + '\'' +
+                '}';
+    }
 }

@@ -2,4 +2,5 @@ rootProject.name = 'gradle-demo'
 include 'lib-common'
 include 'app-demo'
 include 'lib-user'
+include 'lib-pay'
 

@@ -1,6 +1,6 @@
 package com.demo.common.cache;
 
-import com.jia.common.util.SerializerUtil;
+import com.demo.common.util.SerializerUtil;
 import org.springframework.data.redis.serializer.RedisSerializer;
 
 import java.io.Serializable;
