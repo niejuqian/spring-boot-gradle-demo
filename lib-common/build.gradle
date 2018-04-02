@@ -44,6 +44,8 @@ dependencies {
     compile('com.google.guava:guava:18.0')
     compile("com.googlecode.gentyref:gentyref:+")
     compile("com.github.ben-manes.caffeine:caffeine")
+    // https://mvnrepository.com/artifact/jdom/jdom
+    compile group: 'jdom', name: 'jdom', version: '1.1'
 
 
     compile("net.logstash.logback:logstash-logback-encoder:+")
