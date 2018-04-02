@@ -22,7 +22,7 @@ import java.io.InputStream;
 @RequestMapping("/pay")
 public class PayController {
     private Logger logger = LoggerFactory.getLogger(getClass());
-    @RequestMapping("/{channel}")
+    @RequestMapping("/order/{channel}")
     public PayResponse pay(@PathVariable("channel") String channel){
         AbstractPayService payService = (AbstractPayService) SpringContextUtil.getBean(channel + "ServiceImpl");
         PayResponse payResponse = null;
@@ -42,7 +42,7 @@ public class PayController {
      * @return
      * @throws Exception
      */
-    @PostMapping("/wxPayNotify")
+    @RequestMapping("/wxPayNotify")
     @ResponseBody
     public String wxPayNotify(HttpServletRequest request) throws Exception {
         String body = "";
