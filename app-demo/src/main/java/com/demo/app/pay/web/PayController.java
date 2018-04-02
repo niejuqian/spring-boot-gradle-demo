@@ -7,9 +7,13 @@ import com.demo.pay.dto.PayResponse;
 import com.demo.pay.service.AbstractPayService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
@@ -18,7 +22,7 @@ import java.io.InputStream;
  * @author niejiuqian
  * @date 2018/3/28
  */
-@RestController
+@Controller
 @RequestMapping("/pay")
 public class PayController {
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -44,7 +48,8 @@ public class PayController {
      */
     @RequestMapping("/wxPayNotify")
     @ResponseBody
-    public String wxPayNotify(HttpServletRequest request) throws Exception {
+    public String wxPayNotify(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String resultBody = null;
         String body = "";
         try {
             InputStream inStream = request.getInputStream();
@@ -57,11 +62,13 @@ public class PayController {
             outSteam.close();
             inStream.close();
             body = new String(outSteam.toByteArray(), "utf-8");
+            logger.info("===========>>>>微信支付回调参数：{}",body);
+            resultBody = XmlHelpUtil.setXML("SUCCESS","OK");
         }catch (Exception e) {
             logger.error("=========>>>微信支付回调参数解析错误",e);
-            return XmlHelpUtil.setXML("FAIL","解析参数错误");
+            resultBody = XmlHelpUtil.setXML("FAIL","解析参数错误");
         }
-        logger.info("===========>>>>微信支付回调参数：{}",body);
-        return XmlHelpUtil.setXML("SUCCESS","OK");
+        logger.info("===========>>>>微信支付回调响应参数：{}",resultBody);
+        return resultBody;
     }
 }
